@@ -1,0 +1,40 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\ponom\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add webpack webpack-cli –-dev
+
+PATH: 
+  C:\Python39\Scripts\;C:\Python39\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Users\ponom\AppData\Local\Microsoft\WindowsApps;C:\Users\ponom\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ponom\AppData\Roaming\npm;C:\Program Files\MongoDB\Server\4.2\bin;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  14.15.4
+
+Platform: 
+  win32 x64
+
+Trace: 
+  TypeError [ERR_UNESCAPED_CHARACTERS]: Request path contains unescaped characters
+      at new ClientRequest (_http_client.js:151:13)
+      at Object.request (https.js:313:10)
+      at Request.module.exports.Request.start (C:\Users\ponom\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141452:32)
+      at Request.module.exports.Request.end (C:\Users\ponom\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:142211:10)
+      at end (C:\Users\ponom\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141265:14)
+      at Immediate._onImmediate (C:\Users\ponom\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141279:7)
+      at processImmediate (internal/timers.js:461:21)
+
+npm manifest: 
+  {
+    "name": "hacker-news-interface-2022",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/PolinaPonomar/hacker-news-interface-2022.git",
+    "author": "Polina Ponomareva <pp09117@gmail.com>",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
