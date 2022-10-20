@@ -1,0 +1,31 @@
+@import '~antd/dist/antd.css';
+
+h1, p {
+  margin: 0
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.logo {
+  color: #ffffff;
+}
+
+.content {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.refresh-button {
+  margin: 10px 0;
+  align-self: flex-end;
+}
+
+.news {
+  padding: 30px;
+  display: flex;
+  background: #ffffff;
+  border-radius: 20px;
+}
