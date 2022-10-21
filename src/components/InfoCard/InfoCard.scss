@@ -4,3 +4,7 @@
 .info-card {
   border-radius: $border-radius;
 }
+
+.info-card__details {
+  flex-wrap: wrap;
+}

@@ -3,9 +3,63 @@
 
 .page {
   min-height: 100vh;
+  align-items: center;
+}
+
+.header {
+  padding: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.header__wrapper {
+  padding: 0 $mobile-padding;
+  width: 100%;
 }
 
 .logo {
-  width:fit-content;
+  width: fit-content;
   color: $logo-font-color;
+}
+
+.footer {
+  padding-left: $mobile-padding;
+  padding-right: $mobile-padding;
+  width: 100%;
+}
+
+@media screen and (min-width: 425px) {
+  .header__wrapper {
+    padding: 0 $large-mobile-padding;
+  }
+
+  .footer {
+    padding-left: $large-mobile-padding;
+    padding-right: $large-mobile-padding;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header__wrapper {
+    padding: 0 $tablet-padding;
+  }
+
+  .footer {
+    padding-left: $tablet-padding;
+    padding-right: $tablet-padding;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header__wrapper {
+    padding: 0 0;
+    max-width: $max-content-width;
+  }
+
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: $max-content-width;
+  }
 }

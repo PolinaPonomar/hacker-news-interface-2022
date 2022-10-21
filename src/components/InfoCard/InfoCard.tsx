@@ -15,10 +15,10 @@ const InfoCard = (props: InfoCardProps) => {
     <Card className="info-card" title={props.title} size="small">
       <Space direction="vertical" size="small">
         <Text>
-          Learn more: 
-          <Link href={props.url} target="_blank"> {props.url}</Link>
+          I want to
+          <Link href={props.url} target="_blank"> read this news</Link>
         </Text>
-      <Space>
+      <Space className="info-card__details">
         <Text type="secondary">By: {props.author}</Text>
         <Text type="secondary">Posted at: {props.date}</Text>
       </Space>

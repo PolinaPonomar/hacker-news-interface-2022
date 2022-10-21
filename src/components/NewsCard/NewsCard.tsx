@@ -17,11 +17,11 @@ const NewsCard = (props: NewsCardProps) => {
     <Link to="/news">
       <Card className="news-card" title={props.title} size="small" hoverable>
         <div className="news-card__content">
-          <Space>
+          <Space className="news-card__details">
             <Text type="secondary">By: {props.author}</Text>
             <Text type="secondary">Posted at: {props.date}</Text>
           </Space>
-          <Space>
+          <Space className="news-card__rating">
             <StarFilled />
             <p>{props.rating}</p>
           </Space>

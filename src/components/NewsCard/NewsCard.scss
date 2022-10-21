@@ -9,3 +9,11 @@
   display: flex;
   justify-content: space-between;
 }
+
+.news-card__details {
+  flex-wrap: wrap;
+}
+
+.news-card__rating {
+  align-self: flex-start;
+}

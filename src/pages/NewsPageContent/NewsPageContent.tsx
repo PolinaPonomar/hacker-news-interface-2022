@@ -11,7 +11,7 @@ const NewsPageContent = () => {
     <Content className="news-page-content">
       <Button className="news-page-content__button" type="primary" shape="circle" size="large" icon={<ArrowLeftOutlined />} />
       <Space className="news-page-content__info" direction="vertical" size="large">
-        <InfoCard title='Title' author='author' date='date' url='https://ant.design' />
+        <InfoCard title='Show HN: Restfox – Open source lightweight alternative to Postman' author='author' date='2016-11-22 11:22:33' url='https://joeschmoe.io/api/v1/random' />
         <Comments />
       </Space>
     </Content>
