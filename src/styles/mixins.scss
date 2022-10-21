@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+@mixin main-content-frame {
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin base-frame {
+  padding: 30px;
+  display: flex;
+  background-color: $main-background-color;
+  border-radius: $border-radius; 
+}

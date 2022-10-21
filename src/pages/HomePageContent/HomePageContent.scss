@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.home-page-content {
+  @include main-content-frame;
+}
+
+.home-page-content__button {
+  margin: 10px 0;
+  align-self: flex-end;
+}
+
+.home-page-content__news {
+  @include base-frame;
+}

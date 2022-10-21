@@ -1,6 +1,7 @@
-// #001529 - темно-синий шапка
-// #1890ff - голубой
-// #f0f2f5 - серый
-// #ffffff и белый
-// color: rgba(0, 0, 0, 0.85);- цвет шрифта
+@import '~antd/dist/antd.css';
+@import './variables.scss';
+@import './mixins.scss';
 
+h1, p {
+  margin: 0
+}

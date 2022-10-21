@@ -1,11 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-.news-card {
+.info-card {
   border-radius: $border-radius;
-}
-
-.news-card__content {
-  display: flex;
-  justify-content: space-between;
 }
