@@ -9,12 +9,14 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[hash].js',
+    publicPath: '/'
   },
   devServer: {
     static: path.resolve(__dirname, './dist'),
     compress: true,
     port: 8080,
     open: true,
+    historyApiFallback: true
   },
   resolve: {
     extensions: ['*', '.tsx', '.ts', '.js', '.jsx', '.scss'],

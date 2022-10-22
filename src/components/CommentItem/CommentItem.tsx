@@ -1,22 +1,35 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import './CommentItem.scss'
+import { getStorieById } from '../../services/api';
 import {  Avatar, Comment, Tooltip  } from 'antd';
 
-const CommentItem = () => {
+export interface CommentsProps {
+  id: number
+}
+
+export interface CommentProperties {
+  text?: string
+  by?: string
+  time?: number
+  kids?: [number]
+}
+
+const CommentItem = (props: CommentsProps) => {
+  const [comment, setComment] = useState<CommentProperties>({});
+
+  useEffect(() => {
+    getStorieById(props.id).then((data) => {setComment(data); console.log(data)});
+  },[]);
+
   return (
     <Comment
-      author={'Han Solo'}
+      author={comment.by}
       avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo avatar" />}
-      content={
-        <p>
-          We supply a series of design principles, practical patterns and high quality design
-          resources (Sketch and Axure), to help people create their product prototypes beautifully
-          and efficiently.
-        </p>
-      }
+      content={comment.text}
       datetime={
         <Tooltip>
-          <span>2016-11-22 11:22:33</span>
+          <span>{comment.time}</span>
         </Tooltip>
       }
     />

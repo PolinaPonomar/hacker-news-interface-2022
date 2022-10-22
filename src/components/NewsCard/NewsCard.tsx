@@ -1,29 +1,41 @@
 import React from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './NewsCard.scss'
+import { getStorieById } from '../../services/api';
 import { StarFilled } from '@ant-design/icons';
 import {Space, Card, Typography } from 'antd';
 const { Text  } = Typography;
 
 export interface NewsCardProps {
-  title: string
-  author: string
-  date: string
-  rating: number
+  id: number
+}
+
+export interface NewsProperties {
+  title?: string
+  by?: string
+  time?: number
+  score?: number
 }
 
 const NewsCard = (props: NewsCardProps) => {
+  const [news, setNews] = useState<NewsProperties>({});
+
+  useEffect(() => {
+    getStorieById(props.id).then((data) => setNews(data));
+  },[]);
+
   return (
-    <Link to="/news">
-      <Card className="news-card" title={props.title} size="small" hoverable>
+    <Link to={`/news/${props.id}`}>
+      <Card className="news-card" title={news.title} size="small" hoverable>
         <div className="news-card__content">
           <Space className="news-card__details">
-            <Text type="secondary">By: {props.author}</Text>
-            <Text type="secondary">Posted at: {props.date}</Text>
+            <Text type="secondary">By: {news.by}</Text>
+            <Text type="secondary">Posted at: {news.time}</Text>
           </Space>
           <Space className="news-card__rating">
             <StarFilled />
-            <p>{props.rating}</p>
+            <p>{news.score}</p>
           </Space>
         </div>
       </Card>
