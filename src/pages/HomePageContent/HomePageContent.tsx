@@ -19,7 +19,7 @@ const HomePageContent = () => {
     <Content className="home-page-content">
       <Button className="home-page-content__button" type="primary" shape="circle" size="large" icon={<RedoOutlined />} /> {/* loading */}
       <Space className="home-page-content__news" direction="vertical" size="middle">
-        {newsIds.map(id => {return (<NewsCard id={id} key={id}/>)})}
+        {newsIds.map(id => (<NewsCard id={id} key={id}/>))}
       </Space>
     </Content>
   );
