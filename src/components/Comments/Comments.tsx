@@ -7,14 +7,27 @@ import { Button, Space } from 'antd';
 export interface CommentsProps {
   ids: number[]
   commentsCount: number // считаются все комменты, и dead (кажется, их не считают), и deleted
+  handleButtonClick: Function
 }
 
 const Comments = (props: CommentsProps) => {
+
+  function refreshComments() {
+    props.handleButtonClick()
+  };
+
   return (
     <Space className="comments" direction="vertical" size="small">
       <div className='comments__header'>
         <p>{props.commentsCount} comments</p>
-        <Button className="comments__button" type="primary" shape="circle" size="small" icon={<RedoOutlined />} />
+        <Button 
+          className="comments__button"
+          type="primary"
+          shape="circle"
+          size="small"
+          icon={<RedoOutlined />}
+          onClick={refreshComments}
+        />
       </div>
       {props.ids.map(id => (<CommentItem id={id} key={id}/>))}
     </Space>

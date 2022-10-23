@@ -22,10 +22,21 @@ export interface NewsProperties {
 const NewsPageContent = () => {
   const { id } = useParams<{id?: string}>();
   const [news, setNews] = useState<NewsProperties>({});
+  const [isRefreshButtonClicked, setIsRefreshButtonClicked] = useState(false);
 
+  function refreshComments () :void {
+    setIsRefreshButtonClicked(!isRefreshButtonClicked)
+  }
+
+  // 1 -ый вход на страницу
+  useEffect(() => {
+    getStorieById(Number(id)).then((data) => setNews(data));
+  },[]);
+
+  // по принуждению
   useEffect(() => {
     getStorieById(Number(id)).then((data) => setNews(data));// это нужно обновить, когда захотим обновить комментарии ? нам нужна только часть с комментариями.. обновлю ее все равно, но дату по этой новости можно сохранить
-  },[]);
+  },[isRefreshButtonClicked]);
 
   return (
     <Content className="news-page-content">
@@ -34,7 +45,11 @@ const NewsPageContent = () => {
       </Link>
       <Space className="news-page-content__info" direction="vertical" size="large">
         <InfoCard title={news.title} by={news.by} time={news.time} score={news.score} url={news.url}/>
-          <Comments ids={news.kids ? news.kids : []} commentsCount={news.descendants}/>
+          <Comments 
+            ids={news.kids ? news.kids : []}
+            commentsCount={news.descendants}
+            handleButtonClick={refreshComments}
+          />
       </Space>
     </Content>
   );

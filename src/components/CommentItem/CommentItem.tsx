@@ -29,7 +29,7 @@ const CommentItem = (props: CommentItemProps) => {
   };
 
   useEffect(() => {
-    getStorieById(props.id).then((data) => {setComment(data); console.log(data)});// это нужно обновить, когда захотим обновить комментарии ? не понятно..
+    getStorieById(props.id).then((data) => setComment(data));// это нужно обновить, когда захотим обновить комментарии ? не понятно..
   },[]);
 
   const actions = [
