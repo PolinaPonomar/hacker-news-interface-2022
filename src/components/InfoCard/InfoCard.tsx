@@ -1,5 +1,6 @@
 import React from 'react'
 import './InfoCard.scss'
+import { timeConverter } from '../../utils/utils';
 import {Space, Card, Typography } from 'antd';
 const { Text, Link  } = Typography;
 
@@ -21,7 +22,7 @@ const InfoCard = (props: InfoCardProps) => {
         </Text>
       <Space className="info-card__details">
         <Text type="secondary">By: {props.by}</Text>
-        <Text type="secondary">Posted at: {props.time}</Text>
+        <Text type="secondary">Posted at: {timeConverter(props.time)}</Text>
       </Space>
       </Space>
     </Card>

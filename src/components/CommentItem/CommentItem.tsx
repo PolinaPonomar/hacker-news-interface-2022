@@ -2,6 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import './CommentItem.scss'
 import { getStorieById } from '../../services/api';
+import { createMarkup, timeConverter } from '../../utils/utils';
 import { CommentOutlined } from '@ant-design/icons';
 import {  Avatar, Comment, Tooltip  } from 'antd';
 
@@ -13,9 +14,9 @@ export interface CommentProperties {
   text?: string
   by?: string
   time?: number
-  kids?: number[]
-  // dead?: boolean
-  // deleted?: boolean
+  kids?: number[] // - абсолютно все комменты, и dead, и deleted входят в них 
+  // dead?: boolean - комменты без текста
+  // deleted?: boolean - комменты без автора
 }
 
 const CommentItem = (props: CommentItemProps) => {
@@ -28,12 +29,8 @@ const CommentItem = (props: CommentItemProps) => {
   };
 
   useEffect(() => {
-    getStorieById(props.id).then((data) => {setComment(data); console.log(data)});
+    getStorieById(props.id).then((data) => {setComment(data); console.log(data)});// это нужно обновить, когда захотим обновить комментарии ? не понятно..
   },[]);
-
-  function createMarkup(text: string) { // вынести в утилз?
-    return {__html: text};
-  }
 
   const actions = [
     <Tooltip>
@@ -52,10 +49,10 @@ const CommentItem = (props: CommentItemProps) => {
           actions={comment.kids ? actions : []}
           author={comment.by}
           avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="avatar" />}
-          content={<div dangerouslySetInnerHTML={createMarkup(comment.text)}></div>}
+          content={<div dangerouslySetInnerHTML={createMarkup(comment.text)}></div>} //опасная это штука...
           datetime={
             <Tooltip>
-              <span>{comment.time}</span>
+              <span>{timeConverter(comment.time)}</span>
             </Tooltip>
           }
         >

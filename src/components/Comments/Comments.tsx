@@ -6,7 +6,7 @@ import { Button, Space } from 'antd';
 
 export interface CommentsProps {
   ids: number[]
-  commentsCount: number
+  commentsCount: number // считаются все комменты, и dead (кажется, их не считают), и deleted
 }
 
 const Comments = (props: CommentsProps) => {

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './NewsCard.scss'
 import { getStorieById } from '../../services/api';
+import { timeConverter } from '../../utils/utils';
 import { StarFilled } from '@ant-design/icons';
 import {Space, Card, Typography } from 'antd';
 const { Text  } = Typography;
@@ -31,7 +32,7 @@ const NewsCard = (props: NewsCardProps) => {
         <div className="news-card__content">
           <Space className="news-card__details">
             <Text type="secondary">By: {news.by}</Text>
-            <Text type="secondary">Posted at: {news.time}</Text>
+            <Text type="secondary">Posted at: {timeConverter(news.time)}</Text>
           </Space>
           <Space className="news-card__rating">
             <StarFilled />
