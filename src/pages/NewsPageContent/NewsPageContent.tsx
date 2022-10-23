@@ -22,6 +22,8 @@ export interface NewsProperties {
 const NewsPageContent = () => {
   const { id } = useParams<{id?: string}>();
   const [news, setNews] = useState<NewsProperties>({});
+  const [isLoadingInfo, setLoadingInfo] = useState(true);
+  const [isLoadingComments, setLoadingComments] = useState(true);
   const [isRefreshButtonClicked, setIsRefreshButtonClicked] = useState(false);
 
   function refreshComments () :void {
@@ -30,12 +32,33 @@ const NewsPageContent = () => {
 
   // 1 -ый вход на страницу
   useEffect(() => {
-    getStorieById(Number(id)).then((data) => setNews(data));
+    setLoadingInfo(true)
+    setLoadingComments(true)
+    getStorieById(Number(id))
+      .then((data) => {
+        setNews(data);
+        setLoadingInfo(false)
+        setLoadingComments(false);
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+        setLoadingInfo(false)
+        setLoadingComments(false);
+      });
   },[]);
 
   // по принуждению
   useEffect(() => {
-    getStorieById(Number(id)).then((data) => setNews(data));// это нужно обновить, когда захотим обновить комментарии ? нам нужна только часть с комментариями.. обновлю ее все равно, но дату по этой новости можно сохранить
+    setLoadingComments(true)
+    getStorieById(Number(id))
+      .then((data) => {
+        setNews(data);
+        setLoadingComments(false);
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+        setLoadingComments(false);
+      });
   },[isRefreshButtonClicked]);
 
   return (
@@ -44,12 +67,13 @@ const NewsPageContent = () => {
         <Button type="primary" shape="circle" size="large" icon={<ArrowLeftOutlined />} />
       </Link>
       <Space className="news-page-content__info" direction="vertical" size="large">
-        <InfoCard title={news.title} by={news.by} time={news.time} score={news.score} url={news.url}/>
-          <Comments 
-            ids={news.kids ? news.kids : []}
-            commentsCount={news.descendants}
-            handleButtonClick={refreshComments}
-          />
+        <InfoCard title={news.title} by={news.by} time={news.time} score={news.score} url={news.url} isLoading={isLoadingInfo}/>
+        <Comments
+          ids={news.kids ? news.kids : []}
+          commentsCount={news.descendants}
+          handleButtonClick={refreshComments}
+          isLoading={isLoadingComments}
+        />
       </Space>
     </Content>
   );

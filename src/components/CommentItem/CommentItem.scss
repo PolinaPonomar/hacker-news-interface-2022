@@ -1,6 +1,13 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
+.comment-sceleton {
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid $secondary-background-color;
+  border-radius: $border-radius;
+}
+
 .ant-comment-actions {
   display: flex;
   justify-content: flex-end;

@@ -4,7 +4,7 @@ import './CommentItem.scss'
 import { getStorieById } from '../../services/api';
 import { createMarkup, timeConverter } from '../../utils/utils';
 import { CommentOutlined } from '@ant-design/icons';
-import {  Avatar, Comment, Tooltip  } from 'antd';
+import {  Avatar, Comment, Tooltip, Skeleton, Space  } from 'antd';
 
 export interface CommentItemProps {
   id: number
@@ -21,6 +21,7 @@ export interface CommentProperties {
 
 const CommentItem = (props: CommentItemProps) => {
   const [comment, setComment] = useState<CommentProperties>({});
+  const [isLoading, setLoading] = useState(true);
   const [commentСlicked, setСommentСlicked] = useState(false);
 
   function showСomments (event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
@@ -29,7 +30,16 @@ const CommentItem = (props: CommentItemProps) => {
   };
 
   useEffect(() => {
-    getStorieById(props.id).then((data) => setComment(data));// это нужно обновить, когда захотим обновить комментарии ? не понятно..
+    setLoading(true)
+    getStorieById(Number(props.id))
+      .then((data) => {
+        setComment(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+        setLoading(false);
+      });
   },[]);
 
   const actions = [
@@ -41,9 +51,11 @@ const CommentItem = (props: CommentItemProps) => {
 
   return (
     <>
-    {/*(!comment.dead && !comment.deleted) && */
-      (
-      <div onClick={showСomments}>
+    {
+      isLoading ?
+      (<Skeleton className="comment-sceleton" avatar paragraph={{rows: 1}} active />) :
+      (/*(!comment.dead && !comment.deleted) && */
+        <div onClick={showСomments}>
         <Comment
           className={comment.kids && "comment-item"}
           actions={comment.kids ? actions : []}

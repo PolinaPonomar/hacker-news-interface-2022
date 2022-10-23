@@ -41,9 +41,16 @@ const HomePageContent = () => {
 
   //по принуждению
   useEffect(() => {
+    setLoading(true)
     getNewStoriesIds()
-      .then((data) => setNewsIds(data.slice(0, 100)))
-      .catch(err => console.log('Ошибка: ', err));
+      .then((data) => {
+        setNewsIds(data.slice(0, 100));
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log('Ошибка: ', err);
+        setLoading(false);
+      });
   },[isRefreshButtonClicked]);
 
   return (
