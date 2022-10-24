@@ -5,6 +5,7 @@ import { getStorieById } from '../../services/api';
 import { createMarkup, timeConverter } from '../../utils/utils';
 import { CommentOutlined } from '@ant-design/icons';
 import {  Avatar, Comment, Tooltip, Skeleton, Space  } from 'antd';
+import avatar from '../../images/avatar.png'
 
 export interface CommentItemProps {
   id: number
@@ -60,7 +61,7 @@ const CommentItem = (props: CommentItemProps) => {
           className={comment.kids && "comment-item"}
           actions={comment.kids ? actions : []}
           author={comment.by}
-          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="avatar" />}
+          avatar={<Avatar src={avatar} alt="avatar" />}
           content={<div dangerouslySetInnerHTML={createMarkup(comment.text)}></div>} //опасная это штука...
           datetime={
             <Tooltip>
