@@ -16,9 +16,7 @@ interface IComment {
   text?: string
   by?: string
   time?: number
-  kids?: number[] // - абсолютно все комменты, вмсете с dead и deleted
-  // dead?: boolean - комменты без текста
-  // deleted?: boolean - комменты без автора
+  kids?: number[]
 }
 
 const CommentItem = (props: ICommentItemProps) => {
@@ -41,33 +39,31 @@ const CommentItem = (props: ICommentItemProps) => {
 
   const actions = [
     <Tooltip>
-      {comment.kids && comment.kids.length + ' '} {/* comment.kids.length - показывает число комментов, удаленных в том числе */}
+      {comment.kids && comment.kids.length + ' '}
       <CommentOutlined />
     </Tooltip>
   ];
 
   return (
     <>
-    {
-      isLoading ?
-      (<Skeleton className="comment-sceleton" avatar paragraph={{rows: 1}} active />) :
-      (/*(!comment.dead && !comment.deleted) && */ //подумай, будешь отрисовывать их или нет
-        <div onClick={showСomments}>
-        <Comment
-          className={comment.kids && "comment-item"}
-          actions={comment.kids ? actions : []}
-          author={comment.by}
-          avatar={<Avatar src={defaultAvatar} alt="default avatar" />}
-          content={<div>{ReactHtmlParser(comment.text)}</div>}
-          datetime={
-            <Tooltip>
-              <span>{timeConverter(comment.time)}</span>
-            </Tooltip>
-          }
-        >
-          {(commentСlicked && comment.kids) && comment.kids.map(id => (<CommentItem id={id} key={id}/>))}
-        </Comment>
-      </div>)
+    {isLoading
+      ? (<Skeleton className="comment-sceleton" avatar paragraph={{rows: 1}} active />)
+      : (<div onClick={showСomments}>
+          <Comment
+            className={comment.kids && "comment-item"}
+            actions={comment.kids ? actions : []}
+            author={comment.by}
+            avatar={<Avatar src={defaultAvatar} alt="default avatar" />}
+            content={<div>{ReactHtmlParser(comment.text)}</div>}
+            datetime={
+              <Tooltip>
+                <span>{timeConverter(comment.time)}</span>
+              </Tooltip>
+            }
+          >
+            {(commentСlicked && comment.kids) && comment.kids.map(id => (<CommentItem id={id} key={id}/>))}
+          </Comment>
+        </div>)
     }
     </>
   );

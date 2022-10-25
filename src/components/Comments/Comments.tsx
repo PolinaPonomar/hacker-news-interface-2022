@@ -6,7 +6,7 @@ import { Button, Space, Spin } from 'antd';
 
 interface ICommentsProps {
   ids: number[]
-  commentsCount: number // похоже, считаются все комменты ( вместе с dead (мб их не считают) и deleted )
+  commentsCount: number
   handleButtonClick: Function
   isLoading: boolean
 }
@@ -19,7 +19,7 @@ const Comments = (props: ICommentsProps) => {
   return (
     <Space className="comments" direction="vertical" size="small">
       <div className='comments__header'>
-        <p>{props.isLoading ? '...' : props.commentsCount} comments</p>
+        <p>{props.isLoading ? '...' : props.commentsCount} {props.commentsCount === 1 ? 'comment': 'comments'}</p>
         <Button 
           className="comments__button"
           type="primary"

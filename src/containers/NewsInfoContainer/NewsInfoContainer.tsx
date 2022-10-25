@@ -19,7 +19,6 @@ interface ICurrentNews {
   score?: number
   url?: string
   kids?: number[]
-  descendants?: number
 }
 
 const NewsInfoContainer = () => {
@@ -61,7 +60,7 @@ const NewsInfoContainer = () => {
               <InfoCard title={currentNews.title} by={currentNews.by} time={currentNews.time} score={currentNews.score} url={currentNews.url}/>
               <Comments
                 ids={currentNews.kids ? currentNews.kids : []}
-                commentsCount={currentNews.descendants}
+                commentsCount={currentNews.kids ? currentNews.kids.length : 0}
                 handleButtonClick={refreshComments}
                 isLoading={isLoadingComments}
               />
