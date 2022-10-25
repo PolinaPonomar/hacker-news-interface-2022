@@ -1,6 +1,6 @@
 # hacker-news-interface-2022
 
-Интерфейс для сайта [Hacker News](https://news.ycombinator.com/news), состоящий из двух страниц
+Интерфейс для сайта [Hacker News](https://news.ycombinator.com/news), состоящий из двух страниц. Использован официальный [API Hacker News](https://github.com/HackerNews/API)
 
 ## Описание интерфейса
 
@@ -42,6 +42,7 @@ React, Redux, TypeScript, Webpack, SCSS, pоутинг -  [React Router v5](http
 3. Откройте репозиторий проекта и выполните команду ```yarn init```
 4. Запустите проект: ```yarn start```
 5. Проект откроется по сслыке: http://localhost:3000/
+
 Готово!
 
 <br/>
