@@ -28,7 +28,7 @@
 + Есть быть кнопка для возврата к списку новостей
 
 ## Стек
-React, Redux, TypeScript, Webpack, SCSS, pоутинг -  [React Router v5](https://github.com/remix-run/react-router/releases/tag/v5.0.0), фреймворк UI - [Ant Design](https://ant.design/), пакетный менеджер - yarn
+React, Redux, TypeScript, Webpack, SCSS, pоутинг -  [React Router v5](https://github.com/remix-run/react-router/releases/tag/v5.0.0), фреймворк UI - [Ant Design](https://ant.design/), пакетный менеджер - yarn. Адаптивная верстка, неймнин css-классов по БЭМ.
 
 ## Доп. пояснения по логике работы
 + Когда юзер заходит на главную страницу - загружается массив новостей (без комментариев к ним, это экономит время загрузки)
