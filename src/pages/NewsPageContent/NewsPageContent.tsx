@@ -6,8 +6,11 @@ import { getStorieById } from '../../services/api';
 import InfoCard from '../../components/InfoCard/InfoCard';
 import Comments from '../../components/Comments/Comments'
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Layout, Button, Space } from 'antd';
+import { Layout, Button, Space, Spin } from 'antd';
 const { Content } = Layout;
+
+import {useAppSelector} from '../../store/hooks'
+import {INewsList} from '../../store/reducer'
 
 export interface NewsProperties {
   title?: string
@@ -21,45 +24,30 @@ export interface NewsProperties {
 
 const NewsPageContent = () => {
   const { id } = useParams<{id?: string}>();
-  const [news, setNews] = useState<NewsProperties>({});
-  const [isLoadingInfo, setLoadingInfo] = useState(true);
-  const [isLoadingComments, setLoadingComments] = useState(true);
-  const [isRefreshButtonClicked, setIsRefreshButtonClicked] = useState(false);
+  const newsList = useAppSelector((state:INewsList) => state.newsList)
+  console.log(newsList.length);
+  const [currentNews, setCurrentNews] = useState<NewsProperties>({});
+  const [isLoadingComments, setLoadingComments] = useState(false);
 
   function refreshComments () :void {
-    setIsRefreshButtonClicked(!isRefreshButtonClicked)
+    setLoadingComments(true)
+    getStorieById(Number(id))
+      .then((data) => setCurrentNews(data))
+      .catch((err) => console.log('Ошибка: ', err))
+      .finally(() => setLoadingComments(false));
   }
 
   // 1 -ый вход на страницу
   useEffect(() => {
-    setLoadingInfo(true)
-    setLoadingComments(true)
-    getStorieById(Number(id))
-      .then((data) => {
-        setNews(data);
-        setLoadingInfo(false)
-        setLoadingComments(false);
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-        setLoadingInfo(false)
-        setLoadingComments(false);
-      });
-  },[]);
-
-  // по принуждению
-  useEffect(() => {
-    setLoadingComments(true)
-    getStorieById(Number(id))
-      .then((data) => {
-        setNews(data);
-        setLoadingComments(false);
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-        setLoadingComments(false);
-      });
-  },[isRefreshButtonClicked]);
+    // если идет загрузка стора - ставим лоадер на всю. если загрузилось - делаем это.  если это не проходит - значит отправляем на страницу - такокго ресурса нет :(
+    // (newsList.length < 100)
+    newsList.forEach(item => {
+      if (item.id == Number(id)) {
+        setCurrentNews(item)
+        return
+      }
+    })
+  },[newsList.length]);
 
   return (
     <Content className="news-page-content">
@@ -67,13 +55,20 @@ const NewsPageContent = () => {
         <Button type="primary" shape="circle" size="large" icon={<ArrowLeftOutlined />} />
       </Link>
       <Space className="news-page-content__info" direction="vertical" size="large">
-        <InfoCard title={news.title} by={news.by} time={news.time} score={news.score} url={news.url} isLoading={isLoadingInfo}/>
-        <Comments
-          ids={news.kids ? news.kids : []}
-          commentsCount={news.descendants}
-          handleButtonClick={refreshComments}
-          isLoading={isLoadingComments}
-        />
+        {(newsList.length < 100) ?
+          (<div className="home-page-content__spinner">
+            <Spin size="large" spinning/>
+          </div>) :
+          (<>
+            <InfoCard title={currentNews.title} by={currentNews.by} time={currentNews.time} score={currentNews.score} url={currentNews.url}/>
+            <Comments
+              ids={currentNews.kids ? currentNews.kids : []}
+              commentsCount={currentNews.descendants}
+              handleButtonClick={refreshComments}
+              isLoading={isLoadingComments}
+            />
+          </>)
+        }
       </Space>
     </Content>
   );

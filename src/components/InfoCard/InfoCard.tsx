@@ -10,15 +10,15 @@ export interface InfoCardProps {
   time: number
   score: number
   url: string
-  isLoading: boolean
+  // isLoading: boolean
 }
 
 const InfoCard = (props: InfoCardProps) => {
   return (
     <>
-      {props.isLoading ?
-        (<Card className="info-card"><Skeleton paragraph={{rows: 1}} active /></Card>):
-        (<Card className="info-card" title={props.title} size="small">
+      {/* {props.isLoading ?
+        (<Card className="info-card"><Skeleton paragraph={{rows: 1}} active /></Card>): */}
+        <Card className="info-card" title={props.title} size="small">
           <Space direction="vertical" size="small">
             <Text>
               I want to
@@ -29,8 +29,8 @@ const InfoCard = (props: InfoCardProps) => {
               <Text type="secondary">Posted at: {timeConverter(props.time)}</Text>
             </Space>
           </Space>
-        </Card>)
-      }
+        </Card>
+      {/* } */}
     </>
   );
 };

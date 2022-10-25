@@ -8,29 +8,11 @@ import NewsPageContent from '../../pages/NewsPageContent/NewsPageContent';
 import { Layout } from 'antd';
 const { Header, Footer } = Layout;
 
-import {useAppDispatch, useAppSelector} from '../../store/hooks'
-import {fecthNewStoriesIds} from '../../store/reducer'
-
-interface INews {
-  id: number
-  title: string
-  by: string
-  time: number
-  score: number
-}
-
-interface INewsList {
-  newsList: Array<INews>
-}
+import { useAppDispatch } from '../../store/hooks'
+import { fecthNewStoriesIds } from '../../store/reducer'
 
 const App = () => {
   const dispatch = useAppDispatch();
-  const newsList = useAppSelector((state:INewsList) => state.newsList)
-  console.log(newsList);
-
-  function refreshNews () {
-    dispatch(fecthNewStoriesIds());
-  }
 
   // 1 -ый вход в сервис
   useEffect(() => {
@@ -52,7 +34,7 @@ const App = () => {
         </Header>
         <Switch>
           <Route exact path="/">
-            <HomePageContent newsList={newsList} handleRefreshButtonClick={refreshNews}/>
+            <HomePageContent />
           </Route>
           <Route path="/news/:id">
             <NewsPageContent/>

@@ -7,7 +7,7 @@ import { StarFilled } from '@ant-design/icons';
 import {Space, Card, Typography, Skeleton } from 'antd';
 const { Text  } = Typography;
 
- interface NewsCardProps {
+interface NewsCardProps {
   item: {
     id: number
     title: string

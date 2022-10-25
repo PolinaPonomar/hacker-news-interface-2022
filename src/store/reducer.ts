@@ -1,14 +1,17 @@
 import {getNewStoriesIds, getStorieById} from '../services/api'
 
-interface INews {
+export interface INews {
   id: number
   title: string
   by: string
   time: number
   score: number
+  url: string
+  kids: number[]
+  descendants: number
 }
 
-interface INewsList {
+export interface INewsList {
   newsList: Array<INews>
 }
 

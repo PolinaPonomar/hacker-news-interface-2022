@@ -20,7 +20,7 @@ const Comments = (props: CommentsProps) => {
   return (
     <Space className="comments" direction="vertical" size="small">
       <div className='comments__header'>
-        <p>{!isNaN(props.commentsCount) ? props.commentsCount : '...'} comments</p>
+        <p>{props.isLoading ? '...' : props.commentsCount} comments</p>
         <Button 
           className="comments__button"
           type="primary"
