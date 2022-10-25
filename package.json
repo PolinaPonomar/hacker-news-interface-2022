@@ -2,6 +2,7 @@
   "name": "hacker-news-interface-2022",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://polinaponomar.github.io/hacker-news-interface-2022/",
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack  --mode production",
