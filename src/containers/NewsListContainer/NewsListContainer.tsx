@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { getNewsList } from '../../store/actions'
+import { getNewsList, resetNewsListAction } from '../../store/actions'
 import { INewsList } from '../../store/reducer'
 import NewsCard from '../../components/NewsCard/NewsCard';
 import { NEWS_COUNT } from '../../utils/constants'
@@ -14,7 +14,7 @@ const NewsListContainer = () => {
   const newsList = useAppSelector((state:INewsList) => state.newsList)
 
   function refreshNews () {
-    // сюда бы спинер как-то добавить
+    dispatch(resetNewsListAction([]));
     dispatch(getNewsList());
   }
 

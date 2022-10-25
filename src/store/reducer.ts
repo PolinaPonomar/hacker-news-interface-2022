@@ -1,4 +1,4 @@
-import {ADD_NEWS_LIST} from './actions'
+import {ADD_NEWS_LIST, RESET_NEWS_LIST} from './actions'
 
 export interface INews {
   id: number
@@ -23,6 +23,8 @@ export const reducer =(state:INewsList = defaultState, action: {type: string, pa
   switch (action.type) {
     case ADD_NEWS_LIST :
       return {...state, newsList: [...action.payload]}
+    case RESET_NEWS_LIST :
+      return {...state, newsList: []}
     default:
       return state
   }

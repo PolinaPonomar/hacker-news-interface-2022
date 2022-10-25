@@ -14,3 +14,7 @@ export const getNewsList = () => {
       .catch(err => console.log('Ошибка: ', err))
   }
 }
+
+export const RESET_NEWS_LIST ="RESET_NEWS_LIST"
+
+export const resetNewsListAction = (payload: Array<INews>) => ({type: ADD_NEWS_LIST, payload})
