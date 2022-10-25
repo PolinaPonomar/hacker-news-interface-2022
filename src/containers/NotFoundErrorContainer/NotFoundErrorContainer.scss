@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.not-found-error-container {
+  @include main-content-frame;
+}
+
+.not-found-error-container__frame {
+  margin-top: 60px;
+  @include base-frame;
+}

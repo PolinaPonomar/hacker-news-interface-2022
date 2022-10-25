@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.not-found-error {
+  text-align: center;
+}
+
+.not-found-error__text {
+  margin-bottom: 20px;
+}

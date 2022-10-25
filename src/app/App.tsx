@@ -5,6 +5,7 @@ import { getNewsList } from '../store/actions'
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 import NewsListContainer from '../containers/NewsListContainer/NewsListContainer';
 import NewsInfoContainer from '../containers/NewsInfoContainer/NewsInfoContainer';
+import NotFoundErrorContainer from '../containers/NotFoundErrorContainer/NotFoundErrorContainer';
 import './App.scss'
 import { Layout } from 'antd';
 const { Header, Footer } = Layout;
@@ -33,6 +34,9 @@ const App = () => {
           </Route>
           <Route path="/news/:id">
             <NewsInfoContainer />
+          </Route>
+          <Route>
+            <NotFoundErrorContainer />
           </Route>
         </Switch>
         <Footer className="footer">Test task for the intern front-end in Avito, 2022</Footer>

@@ -5,6 +5,7 @@ import { INewsList } from '../../store/reducer'
 import { getStorieById } from '../../services/api';
 import InfoCard from '../../components/InfoCard/InfoCard';
 import Comments from '../../components/Comments/Comments'
+import NotFoundError from '../../components/NotFoundError/NotFoundError'
 import './NewsInfoContainer.scss'
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Layout, Button, Space, Spin } from 'antd';
@@ -54,6 +55,8 @@ const NewsInfoContainer = () => {
           ? (<div className="home-page-content__spinner">
               <Spin size="large" spinning/>
             </div>)
+          : (Object.entries(currentNews).length === 0 )
+          ? (<NotFoundError/>)
           : (<>
               <InfoCard title={currentNews.title} by={currentNews.by} time={currentNews.time} score={currentNews.score} url={currentNews.url}/>
               <Comments
