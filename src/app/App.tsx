@@ -40,7 +40,9 @@ const App = () => {
             <NotFoundErrorContainer />
           </Route>
         </Switch>
-        <Footer className="footer">Avito test task for the front-end developer position (trainee), 2022</Footer>
+        <Footer className="footer">
+          Avito test task for the front-end developer position (trainee) by Polina Ponomareva, 2022
+        </Footer>
       </Layout>
     </ScrollToTop>
   );
