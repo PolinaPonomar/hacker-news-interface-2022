@@ -6,6 +6,7 @@ import { getStorieById } from '../../services/api';
 import InfoCard from '../../components/InfoCard/InfoCard';
 import Comments from '../../components/Comments/Comments'
 import NotFoundError from '../../components/NotFoundError/NotFoundError'
+import { NEWS_COUNT } from '../../utils/constants'
 import './NewsInfoContainer.scss'
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Layout, Button, Space, Spin } from 'antd';
@@ -36,7 +37,6 @@ const NewsInfoContainer = () => {
   }
 
   useEffect(() => {
-    // берем данные о новости из стора. если там нет этой новости -отправляем на страницу ошибки
     newsList.forEach(item => {
       if (item.id == Number(id)) {
         setCurrentNews(item)
@@ -51,8 +51,8 @@ const NewsInfoContainer = () => {
         <Button type="primary" shape="circle" size="large" icon={<ArrowLeftOutlined />} />
       </Link>
       <Space className="news-info-container__info" direction="vertical" size="large">
-        {(newsList.length < 100)
-          ? (<div className="home-page-content__spinner">
+        {(newsList.length < NEWS_COUNT)
+          ? (<div className="news-info-container__spinner">
               <Spin size="large" spinning/>
             </div>)
           : (Object.entries(currentNews).length === 0 )

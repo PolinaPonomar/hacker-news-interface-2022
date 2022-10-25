@@ -13,3 +13,7 @@
 .news-info-container__info {
   @include base-frame;
 }
+
+.news-info-container__spinner {
+  text-align: center;
+}

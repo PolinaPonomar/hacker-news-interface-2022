@@ -6,6 +6,7 @@ import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 import NewsListContainer from '../containers/NewsListContainer/NewsListContainer';
 import NewsInfoContainer from '../containers/NewsInfoContainer/NewsInfoContainer';
 import NotFoundErrorContainer from '../containers/NotFoundErrorContainer/NotFoundErrorContainer';
+import { NEWS_REFRESH_INTERVAL } from '../utils/constants'
 import './App.scss'
 import { Layout } from 'antd';
 const { Header, Footer } = Layout;
@@ -17,7 +18,7 @@ const App = () => {
     dispatch(getNewsList());
     setInterval( () => {
       dispatch(getNewsList());
-    }, 60000)
+    }, NEWS_REFRESH_INTERVAL)
   },[]);
 
   return (
@@ -39,7 +40,7 @@ const App = () => {
             <NotFoundErrorContainer />
           </Route>
         </Switch>
-        <Footer className="footer">Test task for the front-end developer position (trainee) in Avito, 2022</Footer>
+        <Footer className="footer">Avito test task for the front-end developer position (trainee), 2022</Footer>
       </Layout>
     </ScrollToTop>
   );

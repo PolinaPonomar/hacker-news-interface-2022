@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { getNewsList } from '../../store/actions'
 import { INewsList } from '../../store/reducer'
 import NewsCard from '../../components/NewsCard/NewsCard';
+import { NEWS_COUNT } from '../../utils/constants'
 import './NewsListContainer.scss'
 import { RedoOutlined } from '@ant-design/icons';
 import { Layout, Button, Space, Spin } from 'antd';
@@ -28,7 +29,7 @@ const NewsListContainer = () => {
         onClick={refreshNews}
       />
       <Space className="news-list-container__news" direction="vertical" size="middle">
-        {(newsList.length < 100)
+        {(newsList.length < NEWS_COUNT)
           ? (<div className="news-list-container__spinner">
               <Spin size="large" spinning/>
             </div>)
