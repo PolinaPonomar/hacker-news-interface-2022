@@ -1,13 +1,12 @@
 import React from 'react'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import './NewsCard.scss'
 import { timeConverter } from '../../utils/utils';
+import './NewsCard.scss'
 import { StarFilled } from '@ant-design/icons';
-import {Space, Card, Typography, Skeleton } from 'antd';
-const { Text  } = Typography;
+import { Space, Card, Typography } from 'antd';
+const { Text } = Typography;
 
-interface NewsCardProps {
+interface INewsCardProps {
   item: {
     id: number
     title: string
@@ -17,7 +16,7 @@ interface NewsCardProps {
   }
 }
 
-const NewsCard = (props: NewsCardProps) => {
+const NewsCard = (props: INewsCardProps) => {
   return (
     <Link to={`/news/${props.item.id}`}>
       <Card className="news-card" title={props.item.title} size="small" hoverable>

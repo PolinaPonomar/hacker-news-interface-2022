@@ -4,24 +4,24 @@ import './CommentItem.scss'
 import { getStorieById } from '../../services/api';
 import { createMarkup, timeConverter } from '../../utils/utils';
 import { CommentOutlined } from '@ant-design/icons';
-import {  Avatar, Comment, Tooltip, Skeleton, Space  } from 'antd';
-import avatar from '../../images/avatar.png'
+import {  Avatar, Comment, Tooltip, Skeleton } from 'antd';
+import defaultAvatar from '../../images/default-avatar.png'
 
-export interface CommentItemProps {
+interface ICommentItemProps {
   id: number
 }
 
-export interface CommentProperties {
+interface IComment {
   text?: string
   by?: string
   time?: number
-  kids?: number[] // - абсолютно все комменты, и dead, и deleted входят в них 
+  kids?: number[] // - абсолютно все комменты, вмсете с dead и deleted
   // dead?: boolean - комменты без текста
   // deleted?: boolean - комменты без автора
 }
 
-const CommentItem = (props: CommentItemProps) => {
-  const [comment, setComment] = useState<CommentProperties>({});
+const CommentItem = (props: ICommentItemProps) => {
+  const [comment, setComment] = useState<IComment>({});
   const [isLoading, setLoading] = useState(true);
   const [commentСlicked, setСommentСlicked] = useState(false);
 
@@ -33,19 +33,14 @@ const CommentItem = (props: CommentItemProps) => {
   useEffect(() => {
     setLoading(true)
     getStorieById(Number(props.id))
-      .then((data) => {
-        setComment(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-        setLoading(false);
-      });
+      .then((data) => setComment(data))
+      .catch((err) => console.log('Ошибка: ', err))
+      .finally(() => setLoading(false));
   },[]);
 
   const actions = [
     <Tooltip>
-      {comment.kids && comment.kids.length + ' '} {/* comment.kids.length - показывает число и удаленных комментов в том числе */}
+      {comment.kids && comment.kids.length + ' '} {/* comment.kids.length - показывает число комментов, удаленных в том числе */}
       <CommentOutlined />
     </Tooltip>
   ];
@@ -55,14 +50,14 @@ const CommentItem = (props: CommentItemProps) => {
     {
       isLoading ?
       (<Skeleton className="comment-sceleton" avatar paragraph={{rows: 1}} active />) :
-      (/*(!comment.dead && !comment.deleted) && */
+      (/*(!comment.dead && !comment.deleted) && */ //подумай, будешь отрисовывать их или нет
         <div onClick={showСomments}>
         <Comment
           className={comment.kids && "comment-item"}
           actions={comment.kids ? actions : []}
           author={comment.by}
-          avatar={<Avatar src={avatar} alt="avatar" />}
-          content={<div dangerouslySetInnerHTML={createMarkup(comment.text)}></div>} //опасная это штука...
+          avatar={<Avatar src={defaultAvatar} alt="default avatar" />}
+          content={<div dangerouslySetInnerHTML={createMarkup(comment.text)}></div>} // опасная штука
           datetime={
             <Tooltip>
               <span>{timeConverter(comment.time)}</span>

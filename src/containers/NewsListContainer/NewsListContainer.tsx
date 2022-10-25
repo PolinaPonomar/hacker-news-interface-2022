@@ -1,32 +1,20 @@
 import React from 'react'
-import { useState } from 'react'
-import './HomePageContent.scss'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { getNewsList } from '../../store/actions'
+import { INewsList } from '../../store/reducer'
 import NewsCard from '../../components/NewsCard/NewsCard';
+import './NewsListContainer.scss'
 import { RedoOutlined } from '@ant-design/icons';
 import { Layout, Button, Space, Spin } from 'antd';
 const { Content } = Layout;
-import {useAppDispatch, useAppSelector} from '../../store/hooks'
-import {fecthNewStoriesIds, INewsList  } from '../../store/reducer'
 
-// interface INews {
-//   id: number
-//   title: string
-//   by: string
-//   time: number
-//   score: number
-// }
-
-// interface INewsList {
-//   newsList: Array<INews>
-// }
-
-const HomePageContent = () => {
+const NewsListContainer = () => {
   const dispatch = useAppDispatch();
   const newsList = useAppSelector((state:INewsList) => state.newsList)
 
   function refreshNews () {
     // сюда бы спинер как-то добавить
-    dispatch(fecthNewStoriesIds());
+    dispatch(getNewsList());
   }
 
   return (
@@ -40,15 +28,15 @@ const HomePageContent = () => {
         onClick={refreshNews}
       />
       <Space className="home-page-content__news" direction="vertical" size="middle">
-        {(newsList.length < 100) ?
-          (<div className="home-page-content__spinner">
-            <Spin size="large" spinning/>
-          </div>) :
-          newsList.map(news => (<NewsCard item={news} key={news.id}/>))
+        {(newsList.length < 100)
+          ? (<div className="home-page-content__spinner">
+              <Spin size="large" spinning/>
+            </div>)
+          : newsList.map(news => (<NewsCard item={news} key={news.id}/>))
         }
       </Space>
     </Content>
   );
 };
 
-export default HomePageContent;
+export default NewsListContainer;

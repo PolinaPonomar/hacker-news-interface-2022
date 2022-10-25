@@ -1060,14 +1060,6 @@
   resolved "https://registry.yarnpkg.com/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@redux-devtools/extension@^3.2.3":
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/@redux-devtools/extension/-/extension-3.2.3.tgz#589361d9a62326558c39c8a2e09c4acdbe6393e0"
-  integrity sha512-y90IIqdQF6kIkP4KfBCfiFrnu9KMrEPUmcnb5A3v12tjfwRJUXecX8vCEbFqqJLjOomvVmis0Aal7QdFjk6CRQ==
-  dependencies:
-    "@babel/runtime" "^7.18.3"
-    immutable "^4.0.0"
-
 "@reduxjs/toolkit@^1.8.6":
   version "1.8.6"
   resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.8.6.tgz#147fb7957befcdb75bc9c1230db63628e30e4332"

@@ -1,13 +1,11 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useLocation } from "react-router";
-import PropTypes from 'prop-types';
 
-export interface ScrollToTopProps {
+interface IScrollToTopProps {
   children: any
 }
 
-const ScrollToTop = (props: ScrollToTopProps) => {
+const ScrollToTop = (props: IScrollToTopProps) => {
   const location = useLocation();
 
   useEffect(() => {
@@ -19,11 +17,6 @@ const ScrollToTop = (props: ScrollToTopProps) => {
       {props.children}
     </>
   );
-};
-
-ScrollToTop.displayName = 'ScrollToTop';
-ScrollToTop.propTypes = {
-  children: PropTypes.any,
 };
 
 export default ScrollToTop;

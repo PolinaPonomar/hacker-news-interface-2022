@@ -1,26 +1,21 @@
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
+import { useAppDispatch } from '../store/hooks'
+import { getNewsList } from '../store/actions'
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
+import NewsListContainer from '../containers/NewsListContainer/NewsListContainer';
+import NewsInfoContainer from '../containers/NewsInfoContainer/NewsInfoContainer';
 import './App.scss'
-import ScrollToTop from '../../components/ScrollToTop/ScrollToTop';
-import HomePageContent from '../../pages/HomePageContent/HomePageContent';
-import NewsPageContent from '../../pages/NewsPageContent/NewsPageContent';
 import { Layout } from 'antd';
 const { Header, Footer } = Layout;
-
-import { useAppDispatch } from '../../store/hooks'
-import { fecthNewStoriesIds } from '../../store/reducer'
 
 const App = () => {
   const dispatch = useAppDispatch();
 
-  // 1 -ый вход в сервис
   useEffect(() => {
-    dispatch(fecthNewStoriesIds());
-    // обновление новостей каждую минуту
+    dispatch(getNewsList());
     setInterval( () => {
-      console.log('timer')
-      dispatch(fecthNewStoriesIds());
+      dispatch(getNewsList());
     }, 60000)
   },[]);
 
@@ -34,10 +29,10 @@ const App = () => {
         </Header>
         <Switch>
           <Route exact path="/">
-            <HomePageContent />
+            <NewsListContainer />
           </Route>
           <Route path="/news/:id">
-            <NewsPageContent/>
+            <NewsInfoContainer />
           </Route>
         </Switch>
         <Footer className="footer">Test task for the intern front-end in Avito, 2022</Footer>

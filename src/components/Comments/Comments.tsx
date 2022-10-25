@@ -1,18 +1,17 @@
 import React from 'react'
-import './Comments.scss'
 import CommentItem from '../../components/CommentItem/CommentItem'
+import './Comments.scss'
 import { RedoOutlined } from '@ant-design/icons';
 import { Button, Space, Spin } from 'antd';
 
-export interface CommentsProps {
+interface ICommentsProps {
   ids: number[]
-  commentsCount: number // считаются все комменты, и dead (кажется, их не считают), и deleted
+  commentsCount: number // похоже, считаются все комменты ( вместе с dead (мб их не считают) и deleted )
   handleButtonClick: Function
   isLoading: boolean
 }
 
-const Comments = (props: CommentsProps) => {
-
+const Comments = (props: ICommentsProps) => {
   function refreshComments() {
     props.handleButtonClick()
   };
@@ -30,11 +29,11 @@ const Comments = (props: CommentsProps) => {
           onClick={refreshComments}
         />
       </div>
-      {props.isLoading ?
-          (<div className="comments__spinner">
-            <Spin size="large" spinning={props.isLoading}/>
-          </div>) : 
-          props.ids.map(id => (<CommentItem id={id} key={id}/>))
+      {props.isLoading
+          ? (<div className="comments__spinner">
+              <Spin size="large" spinning={props.isLoading}/>
+            </div>)
+          : props.ids.map(id => (<CommentItem id={id} key={id}/>))
         }
     </Space>
   );
