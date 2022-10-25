@@ -26,7 +26,7 @@ const App = () => {
       <Layout className="page">
         <Header className="header">
           <div className="header__wrapper">
-            <Link to="/"><h1 className="logo">Hacker News</h1></Link>
+            <Link to="/" className="header__link"><h1 className="logo">Hacker News</h1></Link>
           </div>
         </Header>
         <Switch>
