@@ -12,7 +12,7 @@
   "repository": "https://github.com/PolinaPonomar/hacker-news-interface-2022.git",
   "author": "Polina Ponomareva <pp09117@gmail.com>",
   "license": "MIT",
-  "homepage": "https://polinaponomar.github.io/hacker-news-interface-2022",
+  "homepage": "./",
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.4",
