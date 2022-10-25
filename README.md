@@ -38,7 +38,9 @@ React, Redux, TypeScript, Webpack, SCSS, pоутинг -  [React Router v5](http
 
 ## Инструкция по запуску
 1. Клонируйте репозиторий к себе на компьютер:
-```git clone https://github.com/PolinaPonomar/hacker-news-interface-2022.git```
+```
+git clone https://github.com/PolinaPonomar/hacker-news-interface-2022.git
+```
 2. Если у вас нет npm/yarn - [установите](https://nodejs.org/en/download/)
 3. Откройте репозиторий проекта и выполните команду ```yarn init```
 4. Запустите проект: ```yarn start```
