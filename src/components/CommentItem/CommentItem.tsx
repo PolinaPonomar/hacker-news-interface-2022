@@ -1,8 +1,9 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import ReactHtmlParser from 'react-html-parser';
 import './CommentItem.scss'
 import { getStorieById } from '../../services/api';
-import { createMarkup, timeConverter } from '../../utils/utils';
+import { timeConverter } from '../../utils/utils';
 import { CommentOutlined } from '@ant-design/icons';
 import {  Avatar, Comment, Tooltip, Skeleton } from 'antd';
 import defaultAvatar from '../../images/default-avatar.png'
@@ -57,7 +58,7 @@ const CommentItem = (props: ICommentItemProps) => {
           actions={comment.kids ? actions : []}
           author={comment.by}
           avatar={<Avatar src={defaultAvatar} alt="default avatar" />}
-          content={<div dangerouslySetInnerHTML={createMarkup(comment.text)}></div>} // опасная штука
+          content={<div>{ReactHtmlParser(comment.text)}</div>}
           datetime={
             <Tooltip>
               <span>{timeConverter(comment.time)}</span>

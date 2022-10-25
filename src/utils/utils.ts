@@ -1,7 +1,3 @@
-export function createMarkup(text: string) {
-  return {__html: text};
-}
-
 export function timeConverter(UnixTime: number) {
   const data = new Date(UnixTime * 1000);
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
