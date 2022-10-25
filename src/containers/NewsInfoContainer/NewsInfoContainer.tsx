@@ -46,11 +46,11 @@ const NewsInfoContainer = () => {
   },[newsList.length]);
 
   return (
-    <Content className="news-page-content">
-      <Link to="/" className="news-page-content__button">
+    <Content className="news-info-container">
+      <Link to="/" className="news-info-container__button">
         <Button type="primary" shape="circle" size="large" icon={<ArrowLeftOutlined />} />
       </Link>
-      <Space className="news-page-content__info" direction="vertical" size="large">
+      <Space className="news-info-container__info" direction="vertical" size="large">
         {(newsList.length < 100)
           ? (<div className="home-page-content__spinner">
               <Spin size="large" spinning/>

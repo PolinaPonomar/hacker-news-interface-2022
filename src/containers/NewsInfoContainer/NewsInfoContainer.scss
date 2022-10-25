@@ -1,15 +1,15 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-.news-page-content {
+.news-info-container {
   @include main-content-frame;
 }
 
-.news-page-content__button {
+.news-info-container__button {
   margin: 10px 0;
   align-self: flex-end;
 }
 
-.news-page-content__info {
+.news-info-container__info {
   @include base-frame;
 }

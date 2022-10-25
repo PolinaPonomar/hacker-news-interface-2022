@@ -18,18 +18,18 @@ const NewsListContainer = () => {
   }
 
   return (
-    <Content className="home-page-content">
+    <Content className="news-list-container">
       <Button 
-        className="home-page-content__button"
+        className="news-list-container__button"
         type="primary"
         shape="circle"
         size="large"
         icon={<RedoOutlined />}
         onClick={refreshNews}
       />
-      <Space className="home-page-content__news" direction="vertical" size="middle">
+      <Space className="news-list-container__news" direction="vertical" size="middle">
         {(newsList.length < 100)
-          ? (<div className="home-page-content__spinner">
+          ? (<div className="news-list-container__spinner">
               <Spin size="large" spinning/>
             </div>)
           : newsList.map(news => (<NewsCard item={news} key={news.id}/>))

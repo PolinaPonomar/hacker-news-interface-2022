@@ -1,19 +1,19 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-.home-page-content {
+.news-list-container {
   @include main-content-frame;
 }
 
-.home-page-content__button {
+.news-list-container__button {
   margin: 10px 0;
   align-self: flex-end;
 }
 
-.home-page-content__news {
+.news-list-container__news {
   @include base-frame;
 }
 
-.home-page-content__spinner {
+.news-list-container__spinner {
   text-align: center;
 }
