@@ -1,58 +1,25 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './HomePageContent.scss'
-import { getNewStoriesIds } from '../../services/api';
 import NewsCard from '../../components/NewsCard/NewsCard';
 import { RedoOutlined } from '@ant-design/icons';
 import { Layout, Button, Space, Spin } from 'antd';
 const { Content } = Layout;
 
-const HomePageContent = () => {
-  const [newsIds, setNewsIds] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  const [isRefreshButtonClicked, setIsRefreshButtonClicked] = useState(false);
+interface INews {
+  id: number
+  title: string
+  by: string
+  time: number
+  score: number
+}
 
-  function refreshNews () {
-    setIsRefreshButtonClicked(!isRefreshButtonClicked)
-  }
+interface HomePageContentProps {
+  newsList: Array<INews>
+  handleRefreshButtonClick: Function
+}
 
-  // 1 -ый вход на страницу
-  useEffect(() => {
-    setLoading(true)
-    getNewStoriesIds()
-      .then((data) => {
-        setNewsIds(data.slice(0, 100));
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-        setLoading(false);
-      });
-  },[]);
-
-  // таймер
-  useEffect(() => {
-    setInterval( () => {
-      getNewStoriesIds()
-        .then(data => setNewsIds(data.slice(0, 100)))
-        .catch(err => console.log('Ошибка: ', err));
-    }, 60000)
-  },[]);
-
-  //по принуждению
-  useEffect(() => {
-    setLoading(true)
-    getNewStoriesIds()
-      .then((data) => {
-        setNewsIds(data.slice(0, 100));
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log('Ошибка: ', err);
-        setLoading(false);
-      });
-  },[isRefreshButtonClicked]);
-
+const HomePageContent = (props: HomePageContentProps) => {
   return (
     <Content className="home-page-content">
       <Button 
@@ -61,14 +28,14 @@ const HomePageContent = () => {
         shape="circle"
         size="large"
         icon={<RedoOutlined />}
-        onClick={refreshNews}
+        onClick={() => props.handleRefreshButtonClick()}
       />
       <Space className="home-page-content__news" direction="vertical" size="middle">
-        {isLoading ?
+        {(props.newsList.length < 100) ?
           (<div className="home-page-content__spinner">
-            <Spin size="large" spinning={isLoading}/>
-          </div>) : 
-          newsIds.map(id => (<NewsCard id={id} key={id}/>))
+            <Spin size="large" spinning/>
+          </div>) :
+          props.newsList.map(news => (<NewsCard item={news} key={news.id}/>))
         }
       </Space>
     </Content>
