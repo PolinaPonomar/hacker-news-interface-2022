@@ -28,6 +28,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
   ],
+  performance : {
+    hints : false
+  }, 
   module: {
     rules: [
       {
